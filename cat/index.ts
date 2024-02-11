@@ -3,6 +3,7 @@ import fs from "fs";
 const args = process.argv.slice(2);
 
 let lineNum = false,
+  blankNum = false,
   data = "",
   files: string[] = [];
 
@@ -12,15 +13,17 @@ function handleInput(args: string[]) {
   if (args[0] === "-n") {
     lineNum = true;
     args.shift();
+  } else if (args[0] === "-b") {
+    blankNum = true;
+    args.shift();
   }
-
   if (!process.stdin.isTTY) {
     data = readFromStdin();
   } else {
     files = args;
     for (let i = 0; i < files.length; i++) data += readAllFile(files[i]);
   }
-  if (lineNum) data = addLineNum(data);
+  if (lineNum || blankNum) data = addLineNum(data, blankNum);
   console.log(data);
 }
 
@@ -40,10 +43,12 @@ function readFromStdin(): string {
   return inputData;
 }
 
-function addLineNum(data: string): string {
+function addLineNum(data: string, blankNum: boolean): string {
   let lines = data.split("\n");
+  let lineNum = 1;
   for (let i = 0; i < lines.length; i++) {
-    lines[i] = `${(i + 1).toString().padEnd(6, " ")}${lines[i]}`;
+    if (blankNum && lines[i].trim() === "") continue;
+    lines[i] = `${(lineNum++).toString().padStart(6, " ")}  ${lines[i]}`;
   }
   return lines.join("\n");
 }
