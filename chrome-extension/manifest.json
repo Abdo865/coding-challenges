@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "coding challenge chrome extension",
+  "description": "coding challenge chrome extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": "popup/hello_extension.png"
+  }
+}
