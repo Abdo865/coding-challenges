@@ -1,0 +1,30 @@
+body {
+  background-color: #04295b;
+  margin: 0;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  color: #ffffff;
+}
+
+.center {
+  text-align: center;
+  font-size: 3em;
+  margin-top: 5%;
+}
+
+.clock {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+li {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 5px 0;
+}
